@@ -1,8 +1,8 @@
 FROM gcr.io/cloud-builders/glide
 
 RUN git config --global url."git@github.com:".insteadOf "https://github.com/"
-RUN mkdir -p ~/.ssh && \
-	echo 'Host github.com\n\tUser git\n\tIdentityFile /workspace/github-key\n\tStrictHostKeyChecking no\n' >~/.ssh/config
+RUN mkdir -p ~/.ssh
+COPY known_hosts ~/.ssh/known_hosts
 
-COPY lucid-glide.bash /builder/bin/
-ENTRYPOINT ["lucid-glide.bash"]
+COPY ssh.sh /ssh.sh
+ENV GIT_SSH=/ssh.sh
