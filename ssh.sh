@@ -18,4 +18,4 @@ then
 	SSH_OPTS="-o IdentityFile=$KEY_FILE"
 fi
 
-exec ssh $SSH_OPTS "$@"
+exec ssh $SSH_OPTS -o StrictHostKeyChecking=no "$@"
