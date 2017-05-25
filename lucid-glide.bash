@@ -19,4 +19,11 @@ EOF
     fi
 done
 
+cd - >/dev/null
+
+echo
+echo "Generated git config:"
+cat $GITCONFIG
+echo
+
 exec glide.bash "$@"
