@@ -20,9 +20,9 @@ then
     cd - >/dev/null
 fi
 
-echo
-echo "Generated git config:"
-cat ~/.gitconfig
-echo
+#echo
+#echo "Generated git config:"
+#cat ~/.gitconfig
+#echo
 
 exec glide.bash "$@"
