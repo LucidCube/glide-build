@@ -2,8 +2,6 @@
 
 KEYS_DIR=/workspace/github-keys
 
-GITCONFIG=~/.gitconfig
-
 if [ -d $KEYS_DIR ]
 then
     cd $KEYS_DIR
@@ -12,13 +10,9 @@ then
         if [[ ! $KEY =~ \.pub$ ]]
         then
             REPO="$(echo "$KEY" | sed 's:_:/:g')"
-
             if [ "$REPO" != "" ]
             then
-                cat >>$GITCONFIG <<EOF
-[url "git@github.com:$REPO"]
-    insteadOf = https://github.com/$REPO
-EOF
+                git config --global url."git@github.com:$REPO".insteadOf "https://github.com/$REPO"
             fi
         fi
     done
@@ -28,7 +22,7 @@ fi
 
 echo
 echo "Generated git config:"
-cat $GITCONFIG
+cat ~/.gitconfig
 echo
 
 exec glide.bash "$@"
