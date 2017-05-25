@@ -6,3 +6,5 @@ COPY known_hosts ~/.ssh/known_hosts
 
 COPY ssh.sh /ssh.sh
 ENV GIT_SSH=/ssh.sh
+
+ENTRYPOINT ["lucid-glide.bash"]
